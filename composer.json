@@ -1,0 +1,22 @@
+{
+    "name": "escapework/moip-php",
+    "description": "Biblioteca PHP para integração com o Moip",
+
+    "authors": [
+        {
+            "name": "Luís Dalmolin",
+            "email": "luis.nh@gmail.com"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "EscapeWork\\Moip\\": "src/"
+        }
+    }
+}
