@@ -1,6 +1,6 @@
 <?php namespace EscapeWork\Moip;
 
-use Guzzle\Http\Client;
+use GuzzleHttp\Client;
 
 class Config
 {
@@ -26,22 +26,17 @@ class Config
     protected $environment = 'production';
 
     /**
-     * API endpoints
-     */
-    protected $endpoints = [
-        'production' => '',
-        'sandbox'    => 'https://sandbox.moip.com.br/assinaturas/v1/',
-    ];
-
-    /**
      * @var  Guzzle\Http\Client
      */
-    protected $client;
+    public $client;
 
-    public function configure()
+    public function configure($endpoint)
     {
         $this->client = new Client([
-            'base_uri' => $this->getEndpoint(),
+            'base_uri' => $endpoint,
+            'headers'  => [
+                'Authorization' => 'Basic ' . $this->getAuthorizationKey()
+            ],
         ]);
     }
 
@@ -72,13 +67,19 @@ class Config
         return $this;
     }
 
-    public function getEndpoint()
-    {
-        return $this->endpoints[$this->getEnvironment()];
-    }
-
     public function getEnvironment()
     {
         return $this->environment;
+    }
+
+    public function configured()
+    {
+        return $this->client;
+    }
+
+    protected function getAuthorizationKey()
+    {
+
+        return base64_encode($this->token . ':' . $this->key);
     }
 }
