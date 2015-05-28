@@ -38,7 +38,7 @@ class Subscription extends Resource
                 'json' => $data,
             ]);
 
-            return $response;
+            return $response->getBody();
         }
         catch (ClientException $e) {
             throw new HttpException($e->getMessage());
