@@ -35,6 +35,8 @@ class Config
         $this->client = new Client([
             'base_uri' => $endpoint,
             'headers'  => [
+                'Content-Type'  => 'application/json',
+                'Accept'        => 'application/json',
                 'Authorization' => 'Basic ' . $this->getAuthorizationKey()
             ],
         ]);

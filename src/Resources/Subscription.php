@@ -1,5 +1,6 @@
 <?php namespace EscapeWork\Moip\Resources;
 
+use EscapeWork\Moip\Exceptions\HttpException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
@@ -24,26 +25,23 @@ class Subscription extends Resource
         'plan',
     ];
 
-    public function create()
+    public function create($id)
     {
         $data = [
-            'code'     => 1,
+            'code'     => $id,
             'plan'     => $this->getPlanData(),
             'customer' => $this->getCustomerData(),
         ];
 
         try {
-            $request = $this->config->client->createRequest('POST', 'subscriptions?new_customer=true', [
-                'debug' => true,
-                'json'  => $data,
+            $response = $this->config->client->post('subscriptions?new_customer=true', [
+                'json' => $data,
             ]);
 
-            dd($request->getBody());
-
-            dd($response->json());
+            return $response;
         }
         catch (ClientException $e) {
-            dd($e->getResponse());
+            throw new HttpException($e->getMessage());
         }
     }
 
@@ -94,8 +92,8 @@ class Subscription extends Resource
         return [
             'holder_name'      => $this->credit_card->getHolderName(),
             'number'           => $this->credit_card->getNumber(),
-            'expiration_month' => $this->credit_card->getNumber(),
-            'expiration_year'  => $this->credit_card->getNumber(),
+            'expiration_month' => $this->credit_card->getExpirationMonth(),
+            'expiration_year'  => $this->credit_card->getExpirationYear(),
         ];
     }
 }
