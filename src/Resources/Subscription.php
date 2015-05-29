@@ -1,6 +1,6 @@
 <?php namespace EscapeWork\Moip\Resources;
 
-use EscapeWork\Moip\Exceptions\HttpException;
+use EscapeWork\Moip\Exceptions\RemoteException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
@@ -25,7 +25,7 @@ class Subscription extends Resource
         'plan',
     ];
 
-    public function create($id)
+    public function create($id, $create = true)
     {
         $data = [
             'code'     => $id,
@@ -34,14 +34,19 @@ class Subscription extends Resource
         ];
 
         try {
-            $response = $this->config->client->post('subscriptions?new_customer=true', [
+            $response = $this->config->client->post('subscriptions?new_customer=' . ($create ? 'true' : 'false'), [
                 'json' => $data,
             ]);
 
             return $response->getBody();
         }
         catch (ClientException $e) {
-            throw new HttpException($e->getMessage());
+            $contents  = json_decode($e->getResponse()->getBody()->getContents());
+            $exception = new RemoteException($e->getMessage());
+
+            $exception->setError(isset($contents->errors) ? $contents->errors[0] : '');
+
+            throw $exception;
         }
     }
 

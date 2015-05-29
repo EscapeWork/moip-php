@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a007476bdf8892817b8934862eff62a",
+    "hash": "5f9ab1682bbd6e28932e9c7d54f38f0e",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -178,6 +178,55 @@
             "time": "2015-05-19 17:58:45"
         },
         {
+            "name": "namshi/cuzzle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/luisdalmolin/cuzzle.git",
+                "reference": "e4193ea55fb81b90f4c6f68c105ae01ca821b407"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/luisdalmolin/cuzzle/zipball/e4193ea55fb81b90f4c6f68c105ae01ca821b407",
+                "reference": "e4193ea55fb81b90f4c6f68c105ae01ca821b407",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "4.*|5.*|6.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "guzzlehttp/guzzle": "4.2.1",
+                "monolog/monolog": "1.10.0",
+                "phpunit/phpunit": "4.2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Namshi\\Cuzzle\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "cirpo",
+                    "email": "alessandro.cinelli@gmail.com"
+                },
+                {
+                    "name": "Nikita Nefedov",
+                    "email": "inefedor@gmail.com"
+                }
+            ],
+            "description": "Get the cURL shell command from a Guzzle request",
+            "support": {
+                "source": "https://github.com/luisdalmolin/cuzzle/tree/master"
+            },
+            "time": "2015-05-29 11:45:15"
+        },
+        {
             "name": "psr/http-message",
             "version": "1.0",
             "source": {
@@ -230,7 +279,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "namshi/cuzzle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
