@@ -25,20 +25,24 @@ class Subscription extends Resource
         'plan',
     ];
 
-    public function create($id, $create = true)
+    public function create($id, $options = array())
     {
-        $data = [
+        $options = array_merge([
+            'new_customer' => true,
+        ], $options);
+
+        $data    = [
             'code'     => $id,
             'plan'     => $this->getPlanData(),
             'customer' => $this->getCustomerData(),
         ];
 
         try {
-            $response = $this->config->client->post('subscriptions?new_customer=' . ($create ? 'true' : 'false'), [
+            $response = $this->config->client->post('subscriptions?new_customer=' . ($options['new_customer'] ? 'true' : 'false'), [
                 'json' => $data,
             ]);
 
-            return $response->getBody();
+            return json_decode($response->getBody()->getContents());
         }
         catch (ClientException $e) {
             $contents  = json_decode($e->getResponse()->getBody()->getContents());
@@ -50,12 +54,50 @@ class Subscription extends Resource
         }
     }
 
-    public function getPlanData()
+    public function update($id, $options = array())
+    {
+        $data = ['plan' => $this->getPlanData()];
+
+        try {
+            $response = $this->config->client->put('subscriptions/' . $id, [
+                'json' => $data,
+            ]);
+
+            return json_decode($response->getBody()->getContents());
+        }
+        catch (ClientException $e) {
+            $contents  = json_decode($e->getResponse()->getBody()->getContents());
+            $exception = new RemoteException($e->getMessage());
+
+            $exception->setError(isset($contents->errors) ? $contents->errors[0] : '');
+
+            throw $exception;
+        }
+    }
+
+    public function invoices($subscription_code)
+    {
+        try {
+            $response = $this->config->client->get('subscriptions/'.$subscription_code.'/invoices');
+
+            return json_decode($response->getBody()->getContents());
+        }
+        catch (ClientException $e) {
+            $contents  = json_decode($e->getResponse()->getBody()->getContents());
+            $exception = new RemoteException($e->getMessage());
+
+            $exception->setError(isset($contents->errors) ? $contents->errors[0] : '');
+
+            throw $exception;
+        }
+    }
+
+    protected function getPlanData()
     {
         return ['code' => $this->plan->getCode()];
     }
 
-    public function getCustomerData()
+    protected function getCustomerData()
     {
         return [
             'code'            => $this->customer->getCode(),
@@ -78,7 +120,7 @@ class Subscription extends Resource
         ];
     }
 
-    public function getAdddressData()
+    protected function getAdddressData()
     {
         return [
             'street'     => $this->address->getStreet(),
@@ -92,7 +134,7 @@ class Subscription extends Resource
         ];
     }
 
-    public function getCreditCardData()
+    protected function getCreditCardData()
     {
         return [
             'holder_name'      => $this->credit_card->getHolderName(),
