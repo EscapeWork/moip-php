@@ -1,6 +1,7 @@
 {
     "name": "escapework/moip-php",
     "description": "Biblioteca PHP para integração com o Moip",
+    "license": "MIT",
 
     "authors": [
         {

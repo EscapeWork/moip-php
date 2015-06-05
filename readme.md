@@ -1,3 +1,3 @@
 # Moip PHP
 
-Em desenvolvimento.
+Pacote para gerenciar assinaturas do Moip. Em desenvolvimento.
