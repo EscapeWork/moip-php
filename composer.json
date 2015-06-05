@@ -27,5 +27,11 @@
         "psr-4": {
             "EscapeWork\\Moip\\": "src/"
         }
-    }
+    },
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.*-dev"
+        }
+    },
 }
