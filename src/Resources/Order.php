@@ -2,6 +2,9 @@
 
 namespace EscapeWork\Moip\Resources;
 
+use EscapeWork\Moip\Data\CustomerData;
+use EscapeWork\Moip\Data\ItemData;
+use EscapeWork\Moip\Data\OrderData;
 use EscapeWork\Moip\Exceptions\RemoteException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -21,13 +24,14 @@ class Order extends Resource
      * Models needed
      */
     protected $required = [
+        'order',
         'customer',
     ];
 
     /**
      * @var array
      */
-    public $items;
+    public $items = [];
 
     public function create()
     {
@@ -43,6 +47,24 @@ class Order extends Resource
             'items'    => $this->getItemsData(),
             'customer' => $this->getCustomerData(),
         ];
+    }
+
+    public function setOrder($data = [])
+    {
+        $this->order = new OrderData($data);
+        return $this;
+    }
+
+    public function setItem($data = [])
+    {
+        $this->items[] = new ItemData($data);
+        return $this;
+    }
+
+    public function setCustomer($data = [])
+    {
+        $this->customer = new CustomerData($data);
+        return $this;
     }
 
     protected function getItemsData()
