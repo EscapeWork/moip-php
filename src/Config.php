@@ -1,4 +1,6 @@
-<?php namespace EscapeWork\Moip;
+<?php 
+
+namespace EscapeWork\Moip;
 
 use GuzzleHttp\Client;
 
@@ -81,7 +83,6 @@ class Config
 
     protected function getAuthorizationKey()
     {
-
         return base64_encode($this->token . ':' . $this->key);
     }
 }

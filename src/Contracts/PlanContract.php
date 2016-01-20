@@ -1,4 +1,6 @@
-<?php namespace EscapeWork\Moip\Contracts;
+<?php 
+
+namespace EscapeWork\Moip\Contracts;
 
 interface PlanContract
 {

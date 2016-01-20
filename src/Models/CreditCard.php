@@ -1,4 +1,6 @@
-<?php namespace EscapeWork\Moip\Models;
+<?php 
+
+namespace EscapeWork\Moip\Models;
 
 class CreditCard extends Model
 {

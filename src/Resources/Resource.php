@@ -1,4 +1,6 @@
-<?php namespace EscapeWork\Moip\Resources;
+<?php 
+
+namespace EscapeWork\Moip\Resources;
 
 use EscapeWork\Moip\Config;
 
