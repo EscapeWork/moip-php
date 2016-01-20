@@ -1,10 +1,10 @@
-<?php 
+<?php
 
-namespace EscapeWork\Moip\Models;
+namespace EscapeWork\Moip\Data;
 
 use EscapeWork\Moip\Contracts\AddressContract;
 
-class Address extends Model implements AddressContract
+class AddressData extends Data implements AddressContract
 {
 
     /**
@@ -12,7 +12,7 @@ class Address extends Model implements AddressContract
      */
     protected $fillable = [
         'street',
-        'number',
+        'streetNumber',
         'complement',
         'district',
         'city',

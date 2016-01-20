@@ -1,8 +1,8 @@
-<?php 
+<?php
 
-namespace EscapeWork\Moip\Models;
+namespace EscapeWork\Moip\Data;
 
-class CreditCard extends Model
+class CreditCard extends Data
 {
 
     /**

@@ -1,8 +1,8 @@
-<?php 
+<?php
 
-namespace EscapeWork\Moip\Models;
+namespace EscapeWork\Moip\Data;
 
-abstract class Model
+abstract class Data
 {
 
     /**

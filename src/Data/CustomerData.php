@@ -1,30 +1,29 @@
-<?php 
+<?php
 
-namespace EscapeWork\Moip\Models;
+namespace EscapeWork\Moip\Data;
 
 use EscapeWork\Moip\Contracts\CustomerContract;
 
-class Customer extends Model implements CustomerContract
+class CustomerData extends Data implements CustomerContract
 {
 
     /**
      * Fillable attributes
      */
     protected $fillable = [
-        'code',
-        'email',
+        'ownId',
         'fullname',
+        'email',
+        'birthDate',
         'cpf',
-        'phone_number',
-        'phone_area_code',
-        'birthdate_day',
-        'birthdate_month',
-        'birthdate_year',
+        'taxDocument',
+        'phone',
+        'shippingAddress',
     ];
 
-    public function getCode()
+    public function getOwnId()
     {
-        return $this->code;
+        return $this->ownId;
     }
 
     public function getEmail()

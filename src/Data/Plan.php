@@ -1,10 +1,10 @@
-<?php 
+<?php
 
-namespace EscapeWork\Moip\Models;
+namespace EscapeWork\Moip\Data;
 
 use EscapeWork\Moip\Contracts\PlanContract;
 
-class Plan extends Model implements PlanContract
+class Plan extends Data implements PlanContract
 {
 
     /**
