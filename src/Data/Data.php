@@ -49,11 +49,25 @@ abstract class Data
 
     public function __set($key, $value)
     {
-        $this->setAttribute($key, $value);
+        $method = 'set' . $this->_studly($key) . 'Attribute';
+
+        if (method_exists($this, $method)) {
+            return $this->{$method}($value);
+        }
+
+        return $this->setAttribute($key, $value);
     }
 
     public function __get($key)
     {
         return $this->getAttribute($key);
+    }
+
+    protected function _studly($key)
+    {
+        $key   = $value;
+        $value = ucwords(str_replace(['-', '_'], ' ', $value));
+
+        return str_replace(' ', '', $value);
     }
 }
