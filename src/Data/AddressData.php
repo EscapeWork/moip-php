@@ -26,9 +26,9 @@ class AddressData extends Data implements AddressContract
         return $this->street;
     }
 
-    public function getNumber()
+    public function getStreetNumber()
     {
-        return $this->number;
+        return $this->streetNumber;
     }
 
     public function getComplement()

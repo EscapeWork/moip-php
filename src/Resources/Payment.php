@@ -21,9 +21,6 @@ class Payment extends Resource
      * Models needed
      */
     protected $required = [
-        'customer',
-        'address',
-        'credit_card',
-        'plan',
+
     ];
 }

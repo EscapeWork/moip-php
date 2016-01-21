@@ -17,7 +17,7 @@ class Order extends Resource
      */
     protected $endpoint = [
         'production' => '',
-        'sandbox'    => 'https://sandbox.moip.com.br/orders/v2/',
+        'sandbox'    => 'https://sandbox.moip.com.br/v2/orders',
     ];
 
     /**
@@ -47,6 +47,22 @@ class Order extends Resource
             'items'    => $this->getItemsData(),
             'customer' => $this->getCustomerData(),
         ];
+
+        try {
+            $response = $this->config->client->post('https://sandbox.moip.com.br/v2/orders', [
+                'json' => $data,
+            ]);
+            dd($response->getBody());
+            return json_decode($response->getBody()->getContents());
+        }
+        catch (ClientException $e) {
+            $contents  = json_decode($e->getResponse()->getBody()->getContents());
+            $exception = new RemoteException($e->getMessage());
+
+            $exception->setError(isset($contents->errors) ? $contents->errors[0] : '');
+
+            throw $exception;
+        }
     }
 
     public function setOrder($data = [])
@@ -69,11 +85,49 @@ class Order extends Resource
 
     protected function getItemsData()
     {
-        return [];
+        $data = [];
+
+        foreach ($this->items as $item) {
+            $data[] = [
+                'product'  => $item->product,
+                'quantity' => $item->quantity,
+                'detail'   => $item->detail,
+                'price'    => $item->price,
+            ];
+        }
+
+        return $data;
     }
 
     protected function getCustomerData()
     {
-        return [];
+        return [
+            'ownId'     => $this->customer->getOwnId(),
+            'fullname'  => $this->customer->getFullname(),
+            'email'     => $this->customer->getEmail(),
+            'birthDate' => $this->customer->getBirthDate(),
+
+            'taxDocument' => [
+                'type'   => $this->customer->getTaxDocument()->getType(),
+                'number' => $this->customer->getTaxDocument()->getNumber(),
+            ],
+
+            'phone' => [
+                'countryCode' => $this->customer->getPhone()->getCountryCode(),
+                'areaCode'    => $this->customer->getPhone()->getAreaCode(),
+                'number'      => $this->customer->getPhone()->getNumber(),
+            ],
+
+            'shippingAddress' => [
+                'street'       => $this->customer->getShippingAddress()->getStreet(),
+                'streetNumber' => $this->customer->getShippingAddress()->getStreetNumber(),
+                'complement'   => $this->customer->getShippingAddress()->getComplement(),
+                'district'     => $this->customer->getShippingAddress()->getDistrict(),
+                'city'         => $this->customer->getShippingAddress()->getCity(),
+                'state'        => $this->customer->getShippingAddress()->getState(),
+                'country'      => $this->customer->getShippingAddress()->getCountry(),
+                'zipCode'      => $this->customer->getShippingAddress()->getZipCode(),
+            ]
+        ];
     }
 }

@@ -38,23 +38,26 @@ abstract class Data
 
     public function setAttribute($key, $value)
     {
+        $method = 'set' . $this->_studly($key) . 'Attribute';
+
+        if (method_exists($this, $method)) {
+            $this->{$method}($value);
+            return $this;
+        }
+
         $this->attributes[$key] = $value;
         return $this;
     }
 
     public function getAttribute($key)
     {
-        return $this->attributes[$key];
+        if (isset($this->attributes[$key])) {
+            return $this->attributes[$key];
+        }
     }
 
     public function __set($key, $value)
     {
-        $method = 'set' . $this->_studly($key) . 'Attribute';
-
-        if (method_exists($this, $method)) {
-            return $this->{$method}($value);
-        }
-
         return $this->setAttribute($key, $value);
     }
 
@@ -65,8 +68,7 @@ abstract class Data
 
     protected function _studly($key)
     {
-        $key   = $value;
-        $value = ucwords(str_replace(['-', '_'], ' ', $value));
+        $value = ucwords(str_replace(['-', '_'], ' ', $key));
 
         return str_replace(' ', '', $value);
     }

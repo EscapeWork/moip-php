@@ -18,8 +18,6 @@ class CustomerData extends Data implements CustomerContract
         'cpf',
         'taxDocument',
         'phone',
-        'phoneAreaCode',
-        'phoneNumber',
         'shippingAddress',
     ];
 
@@ -30,6 +28,16 @@ class CustomerData extends Data implements CustomerContract
         }
 
         $this->attributes['taxDocument']->number = $cpf;
+    }
+
+    public function setPhoneAttribute($data)
+    {
+        if ($data instanceof PhoneData) {
+            $this->attributes['phone'] = $data;
+            return $this;
+        }
+
+        $this->attributes['phone'] = new PhoneData($data);
     }
 
     public function setPhoneAreaCodeAttribute($areaCode)
@@ -75,33 +83,43 @@ class CustomerData extends Data implements CustomerContract
         return $this->fullname;
     }
 
-    public function getCpf()
+    public function getBirthDate()
     {
-        return $this->cpf;
+        return $this->birthDate;
     }
 
-    public function getPhoneNumber()
+    public function getTaxDocument()
     {
-        return $this->phone_number;
+        return $this->taxDocument;
+    }
+
+    public function getCpf()
+    {
+        return $this->taxDocument->cpf;
+    }
+
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    public function getPhoneCountryCode()
+    {
+        return $this->phone->countryCode;
     }
 
     public function getPhoneAreaCode()
     {
-        return $this->phone_area_code;
+        return $this->phone->areaCode;
     }
 
-    public function getBirthdateDay()
+    public function getPhoneNumber()
     {
-        return $this->birthdate_day;
+        return $this->phone->number;
     }
 
-    public function getBirthdateMonth()
+    public function getShippingAddress()
     {
-        return $this->birthdate_month;
-    }
-
-    public function getBirthdateYear()
-    {
-        return $this->birthdate_year;
+        return $this->shippingAddress;
     }
 }
