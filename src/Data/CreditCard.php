@@ -9,29 +9,23 @@ class CreditCard extends Data
      * Fillable attributes
      */
     protected $fillable = [
-        'holder_name',
-        'number',
-        'expiration_month',
-        'expiration_year',
+        'hash',
+        'holder',
+        'phone',
     ];
 
-    public function getHolderName()
+    public function getHash()
     {
-        return $this->holder_name;
+        return $this->hash;
     }
 
-    public function getNumber()
+    public function getHolder()
     {
-        return $this->number;
+        return $this->holder;
     }
 
-    public function getExpirationMonth()
+    public function getPhone()
     {
-        return $this->expiration_month;
-    }
-
-    public function getExpirationYear()
-    {
-        return $this->expiration_year;
+        return $this->phone;
     }
 }

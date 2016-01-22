@@ -2,9 +2,7 @@
 
 namespace EscapeWork\Moip\Data;
 
-use EscapeWork\Moip\Contracts\AddressContract;
-
-class AddressData extends Data implements AddressContract
+class AddressData extends Data
 {
 
     /**

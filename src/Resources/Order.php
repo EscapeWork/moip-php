@@ -50,12 +50,14 @@ class Order extends Resource
 
         try {
             $response = $this->config->client->post('https://sandbox.moip.com.br/v2/orders', [
-                'json' => $data,
+                'debug' => false,
+                'json'  => $data,
             ]);
-            dd($response->getBody());
+
             return json_decode($response->getBody()->getContents());
         }
-        catch (ClientException $e) {
+        catch (\Exception $e) {
+            dd('ERROR', $e->getResponse());
             $contents  = json_decode($e->getResponse()->getBody()->getContents());
             $exception = new RemoteException($e->getMessage());
 
@@ -89,10 +91,10 @@ class Order extends Resource
 
         foreach ($this->items as $item) {
             $data[] = [
-                'product'  => $item->product,
-                'quantity' => $item->quantity,
-                'detail'   => $item->detail,
-                'price'    => $item->price,
+                'product'  => $item->getProduct(),
+                'quantity' => $item->getQuantity(),
+                'detail'   => $item->getDetail(),
+                'price'    => $item->getPrice(),
             ];
         }
 
