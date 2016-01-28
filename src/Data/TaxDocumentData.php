@@ -22,4 +22,17 @@ class TaxDocumentData extends Data
     {
         return $this->number;
     }
+
+    public function setNumberAttribute($number)
+    {
+        $this->attributes['number'] = filter_var($number, FILTER_SANITIZE_NUMBER_INT);
+    }
+
+    public function toArray()
+    {
+        return [
+            'type'   => $this->getType(),
+            'number' => $this->getNumber(),
+        ];
+    }
 }

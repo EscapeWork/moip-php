@@ -5,7 +5,15 @@ use ErrorException;
 class RemoteException extends ErrorException
 {
 
+    /**
+     * @var array
+     */
     protected $error = array();
+
+    /**
+     * @var array
+     */
+    public $data;
 
     public function setError($error)
     {

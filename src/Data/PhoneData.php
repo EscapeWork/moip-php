@@ -28,4 +28,13 @@ class PhoneData extends Data
     {
         return $this->number;
     }
+
+    public function toArray()
+    {
+        return [
+            'countryCode' => $this->getCountryCode(),
+            'areaCode'    => $this->getAreaCode(),
+            'number'      => $this->getNumber(),
+        ];
+    }
 }
