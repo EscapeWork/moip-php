@@ -1,4 +1,6 @@
-<?php namespace EscapeWork\Moip\Exceptions;
+<?php
+
+namespace EscapeWork\Moip\Exceptions;
 
 use ErrorException;
 
@@ -8,7 +10,7 @@ class RemoteException extends ErrorException
     /**
      * @var array
      */
-    protected $error = array();
+    protected $error = [];
 
     /**
      * @var array
