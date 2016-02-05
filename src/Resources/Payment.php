@@ -46,7 +46,6 @@ class Payment extends Resource
             $contents        = json_decode($e->getResponse()->getBody()->getContents());
             $exception       = new RemoteException($e->getMessage());
             $exception->data = $data;
-            dd($data);
 
             $exception->setError(isset($contents->errors) ? $contents->errors[0] : '');
 
