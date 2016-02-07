@@ -47,12 +47,15 @@ class Payment extends Resource
             $exception       = new RemoteException($e->getMessage());
             $exception->data = $data;
 
-            $exception->setError(isset($contents->errors) ? $contents->errors[0] : '');
+            $exception->setError(isset($contents->errors) ? $contents->errors[0]->description : '');
 
             throw $exception;
         }
         catch (Exception $e) {
-            dd($e, $data);
+            $exception = new RemoteException($e->getMessage());
+            $exception->setError('Ocorreu um erro desconhecido, por favor, tente novamente');
+
+            throw $exception;
         }
     }
 
