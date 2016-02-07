@@ -72,4 +72,9 @@ abstract class Data
 
         return str_replace(' ', '', $value);
     }
+
+    public function toArray()
+    {
+        return $this->attributes;
+    }
 }

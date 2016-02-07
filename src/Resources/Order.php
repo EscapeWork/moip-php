@@ -56,14 +56,11 @@ class Order extends Resource
 
             return json_decode($response->getBody()->getContents());
         }
-        catch (\Exception $e) {
-            dd('ERROR', $e->getResponse());
-            $contents  = json_decode($e->getResponse()->getBody()->getContents());
-            $exception = new RemoteException($e->getMessage());
-
-            $exception->setError(isset($contents->errors) ? $contents->errors[0] : '');
-
-            throw $exception;
+        catch (ClientException $e) {
+            $this->handleClientException($e);
+        }
+        catch (Exception $e) {
+            $this->handleExcpetion($e);
         }
     }
 

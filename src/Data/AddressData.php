@@ -16,7 +16,7 @@ class AddressData extends Data
         'city',
         'state',
         'country',
-        'zipcode',
+        'zipCode',
     ];
 
     public function getStreet()
@@ -54,8 +54,22 @@ class AddressData extends Data
         return $this->country ?: 'BRA';
     }
 
-    public function getZipcode()
+    public function getZipCode()
     {
-        return $this->zipcode;
+        return $this->zipCode;
+    }
+
+    public function toArray()
+    {
+        return [
+            'street'       => $this->getStreet(),
+            'streetNumber' => $this->getStreetNumber(),
+            'complement'   => $this->getComplement(),
+            'district'     => $this->getDistrict(),
+            'city'         => $this->getCity(),
+            'state'        => $this->getState(),
+            'country'      => $this->getCountry(),
+            'zipCode'      => $this->getZipCode(),
+        ];
     }
 }

@@ -1,8 +1,11 @@
-<?php 
+<?php
 
 namespace EscapeWork\Moip\Resources;
 
 use EscapeWork\Moip\Config;
+use EscapeWork\Moip\Exceptions\RemoteException;
+use GuzzleHttp\Exception\ClientException;
+use Exception;
 
 abstract class Resource
 {
@@ -43,5 +46,24 @@ abstract class Resource
         if (array_key_exists($key, $this->models)) {
             return $this->models[$key];
         }
+    }
+
+    public function handleClientException(ClientException $e, $data = [])
+    {
+        $contents        = json_decode($e->getResponse()->getBody()->getContents());
+        $exception       = new RemoteException($e->getMessage());
+        $exception->data = $data;
+
+        $exception->setError(isset($contents->errors) ? $contents->errors[0]->description : '');
+
+        throw $exception;
+    }
+
+    public function handleException(Exception $e)
+    {
+        $exception = new RemoteException($e->getMessage());
+        $exception->setError('Ocorreu um erro desconhecido, por favor, tente novamente');
+
+        throw $exception;
     }
 }

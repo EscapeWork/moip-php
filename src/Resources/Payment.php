@@ -43,19 +43,10 @@ class Payment extends Resource
             return json_decode($response->getBody()->getContents());
         }
         catch (ClientException $e) {
-            $contents        = json_decode($e->getResponse()->getBody()->getContents());
-            $exception       = new RemoteException($e->getMessage());
-            $exception->data = $data;
-
-            $exception->setError(isset($contents->errors) ? $contents->errors[0]->description : '');
-
-            throw $exception;
+            $this->handleClientException($e);
         }
         catch (Exception $e) {
-            $exception = new RemoteException($e->getMessage());
-            $exception->setError('Ocorreu um erro desconhecido, por favor, tente novamente');
-
-            throw $exception;
+            $this->handleExcpetion($e);
         }
     }
 
