@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace EscapeWork\Moip;
 
@@ -6,6 +6,9 @@ use GuzzleHttp\Client;
 
 class Config
 {
+
+    const AUTH_HTTP  = 'http';
+    const AUTH_OAUTH = 'oauth';
 
     /**
      * @var  static
@@ -23,6 +26,16 @@ class Config
     protected $key;
 
     /**
+     * App ID
+     */
+    protected $appId;
+
+    /**
+     * App Access Token
+     */
+    protected $appAccessToken;
+
+    /**
      * Environment
      */
     protected $environment = 'production';
@@ -32,14 +45,14 @@ class Config
      */
     public $client;
 
-    public function configure($endpoint)
+    public function configure($options = [])
     {
         $this->client = new Client([
-            'base_uri' => $endpoint,
+            'base_uri' => $options['endpoint'],
             'headers'  => [
                 'Content-Type'  => 'application/json',
                 'Accept'        => 'application/json',
-                'Authorization' => 'Basic ' . $this->getAuthorizationKey()
+                'Authorization' => $this->getAuthorizationString($options['auth'])
             ],
         ]);
     }
@@ -71,6 +84,18 @@ class Config
         return $this;
     }
 
+    public function setAppId($appId)
+    {
+        $this->appId = $appId;
+        return $this;
+    }
+
+    public function setAppAccessToken($appAccessToken)
+    {
+        $this->appAccessToken = $appAccessToken;
+        return $this;
+    }
+
     public function getEnvironment()
     {
         return $this->environment;
@@ -84,5 +109,19 @@ class Config
     protected function getAuthorizationKey()
     {
         return base64_encode($this->token . ':' . $this->key);
+    }
+
+    protected function getOauthKey()
+    {
+        return $this->appAccessToken;
+    }
+
+    public function getAuthorizationString($auth)
+    {
+        if ($auth == 'oauth') {
+            return 'OAuth ' . $this->getOauthKey();
+        }
+
+        return 'Basic ' . $this->getAuthorizationKey();
     }
 }

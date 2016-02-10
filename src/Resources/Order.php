@@ -57,7 +57,7 @@ class Order extends Resource
             return json_decode($response->getBody()->getContents());
         }
         catch (ClientException $e) {
-            $this->handleClientException($e);
+            $this->handleClientException($e, $data);
         }
         catch (Exception $e) {
             $this->handleExcpetion($e);

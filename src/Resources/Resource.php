@@ -25,12 +25,20 @@ abstract class Resource
      */
     protected $required = [];
 
+    /**
+     * Authentication method
+     */
+    protected $auth = 'http';
+
     public function __construct($config = null)
     {
         $this->config = $config ?: Config::getInstance();
 
         if (! $this->config->configured()) {
-            $this->config->configure($this->endpoint[$this->config->getEnvironment()]);
+            $this->config->configure([
+                'endpoint' => $this->endpoint[$this->config->getEnvironment()],
+                'auth'     => $this->auth,
+            ]);
         }
     }
 

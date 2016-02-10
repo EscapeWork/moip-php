@@ -2,6 +2,7 @@
 
 namespace EscapeWork\Moip\Resources;
 
+use EscapeWork\Moip\Config;
 use EscapeWork\Moip\Data\CompanyData;
 use EscapeWork\Moip\Data\EmailData;
 use EscapeWork\Moip\Data\PersonData;
@@ -12,6 +13,11 @@ use GuzzleHttp\Exception\ClientException;
 
 class Account extends Resource
 {
+
+    /**
+     * Authentication method
+     */
+    protected $auth = Config::AUTH_OAUTH;
 
     /**
      * API endpoints
