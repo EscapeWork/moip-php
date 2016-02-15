@@ -53,9 +53,12 @@ class HolderData extends Data
     public function toArray()
     {
         $data = [
-            'fullname'    => $this->getFullname(),
-            'birthdate'   => $this->getBirthdate(),
+            'fullname' => $this->getFullname(),
         ];
+
+        if ($this->birthdate) {
+            $data['birthdate'] = $this->getBirthdate();
+        }
 
         if ($this->taxDocument) {
             $data['taxDocument'] = $this->taxDocument->toArray();

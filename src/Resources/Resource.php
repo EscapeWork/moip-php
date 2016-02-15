@@ -56,6 +56,17 @@ abstract class Resource
         }
     }
 
+    public function setAccessToken($token)
+    {
+        $this->config->setAppAccessToken($token);
+        $this->config->configure([
+            'endpoint' => $this->endpoint[$this->config->getEnvironment()],
+            'auth'     => $this->auth,
+        ]);
+
+        return $this;
+    }
+
     public function handleClientException(ClientException $e, $data = [])
     {
         $contents        = json_decode($e->getResponse()->getBody()->getContents());
