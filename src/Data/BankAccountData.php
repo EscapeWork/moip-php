@@ -9,6 +9,7 @@ class BankAccountData extends Data
      * Fillable attributes
      */
     protected $fillable = [
+        'id',
         'bankNumber',
         'type',
         'agencyNumber',
@@ -22,18 +23,5 @@ class BankAccountData extends Data
     {
         $this->holder = new HolderData;
         $this->holder->fill($data);
-    }
-
-    public function toArray()
-    {
-        return [
-            'bankNumber'         => $this->bankNumber,
-            'type'               => $this->type,
-            'agencyNumber'       => $this->agencyNumber,
-            'agencyCheckNumber'  => $this->agencyCheckNumber,
-            'accountNumber'      => $this->accountNumber,
-            'accountCheckNumber' => $this->accountCheckNumber,
-            'holder'             => $this->holder->toArray(),
-        ];
     }
 }
