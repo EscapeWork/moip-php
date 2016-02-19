@@ -24,4 +24,15 @@ class BankAccountData extends Data
         $this->holder = new HolderData;
         $this->holder->fill($data);
     }
+
+    public function toArray()
+    {
+        $data = array_except($this->attributes, ['holder']);
+
+        if ($this->holder) {
+            $data['holder'] = $this->holder->toArray();
+        }
+
+        return $data;
+    }
 }

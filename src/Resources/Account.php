@@ -20,14 +20,6 @@ class Account extends Resource
     protected $auth = Config::AUTH_OAUTH;
 
     /**
-     * API endpoints
-     */
-    protected $endpoint = [
-        'production' => '',
-        'sandbox'    => 'https://sandbox.moip.com.br/v2/accounts/',
-    ];
-
-    /**
      * Models needed
      */
     protected $required = [
@@ -43,7 +35,7 @@ class Account extends Resource
         $data = $this->getData();
 
         try {
-            $response = $this->config->client->post('https://sandbox.moip.com.br/v2/accounts', [
+            $response = $this->config->client->post('accounts', [
                 'debug' => false,
                 'json'  => $data,
             ]);

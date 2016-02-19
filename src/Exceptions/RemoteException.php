@@ -17,6 +17,11 @@ class RemoteException extends ErrorException
      */
     public $data;
 
+    /**
+     * @var array
+     */
+    public $headers;
+
     public function setError($error)
     {
         $this->error = $error;

@@ -2,7 +2,7 @@
 
 namespace EscapeWork\Moip\Resources;
 
-use EscapeWork\Moip\Data\FundingInstrumentData;
+use EscapeWork\Moip\Config;
 use EscapeWork\Moip\Data\TransferData;
 use EscapeWork\Moip\Exceptions\RemoteException;
 use Exception;
@@ -18,14 +18,6 @@ class Transfer extends Resource
     protected $auth = Config::AUTH_OAUTH;
 
     /**
-     * API endpoints
-     */
-    protected $endpoint = [
-        'production' => '',
-        'sandbox'    => 'https://sandbox.moip.com.br/v2/transfers',
-    ];
-
-    /**
      * Models needed
      */
     protected $required = [
@@ -37,7 +29,7 @@ class Transfer extends Resource
         $data = $this->transferData->toArray();
 
         try {
-            $response = $this->config->client->post('/', [
+            $response = $this->config->client->post('transfers', [
                 'debug' => false,
                 'json'  => $data,
             ]);

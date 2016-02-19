@@ -11,6 +11,7 @@ class TransferInstrumentData extends Data
     protected $fillable = [
         'method',
         'bankAccount',
+        'moipAccount',
     ];
 
     public function setBankAccountAttribute($data)
@@ -20,11 +21,25 @@ class TransferInstrumentData extends Data
         return $this;
     }
 
+    public function setMoipAccountAttribute($data)
+    {
+        $this->moipAccount = new MoipAccountData;
+        $this->moipAccount->fill($data);
+        return $this;
+    }
+
     public function toArray()
     {
-        return [
-            'method'      => $this->method ?: 'BANK_ACCOUNT',
-            'bankAccount' => $this->bankAccount->toArray(),
-        ];
+        $data = ['method' => $this->method ?: 'BANK_ACCOUNT'];
+
+        if ($this->bankAccount) {
+            $data['bankAccount'] = $this->bankAccount->toArray();
+        }
+
+        if ($this->moipAccount) {
+            $data['moipAccount'] = $this->moipAccount->toArray();
+        }
+
+        return $data;
     }
 }

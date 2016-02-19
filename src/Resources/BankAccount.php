@@ -17,14 +17,6 @@ class BankAccount extends Resource
     protected $auth = Config::AUTH_OAUTH;
 
     /**
-     * API endpoints
-     */
-    protected $endpoint = [
-        'production' => '',
-        'sandbox'    => 'https://sandbox.moip.com.br/v2/accounts/{id}/bank-accounts',
-    ];
-
-    /**
      * Models needed
      */
     protected $required = [
@@ -36,7 +28,7 @@ class BankAccount extends Resource
         $data = $this->getData();
 
         try {
-            $response = $this->config->client->post('https://sandbox.moip.com.br/v2/accounts/'.$account_id.'/bankaccounts', [
+            $response = $this->config->client->post('accounts/'.$account_id.'/bankaccounts', [
                 'debug' => false,
                 'json'  => $data,
             ]);
@@ -56,7 +48,7 @@ class BankAccount extends Resource
         $data = $this->getData();
 
         try {
-            $response = $this->config->client->put('https://sandbox.moip.com.br/v2/bankaccounts/' . $id, [
+            $response = $this->config->client->put('bankaccounts/' . $id, [
                 'debug' => false,
                 'json'  => $data,
             ]);

@@ -13,14 +13,6 @@ class Order extends Resource
 {
 
     /**
-     * API endpoints
-     */
-    protected $endpoint = [
-        'production' => '',
-        'sandbox'    => 'https://sandbox.moip.com.br/v2/orders',
-    ];
-
-    /**
      * Models needed
      */
     protected $required = [
@@ -49,7 +41,7 @@ class Order extends Resource
         ];
 
         try {
-            $response = $this->config->client->post('https://sandbox.moip.com.br/v2/orders', [
+            $response = $this->config->client->post('orders', [
                 'debug' => false,
                 'json'  => $data,
             ]);

@@ -35,7 +35,7 @@ class Payment extends Resource
         ];
 
         try {
-            $response = $this->config->client->post('https://sandbox.moip.com.br/v2/orders/'.$order->id.'/payments', [
+            $response = $this->config->client->post('orders/'.$order->id.'/payments', [
                 'debug' => false,
                 'json'  => $data,
             ]);

@@ -30,6 +30,14 @@ abstract class Resource
      */
     protected $auth = 'http';
 
+    /**
+     * API endpoints
+     */
+    protected $endpoint = [
+        'production' => '',
+        'sandbox'    => 'https://sandbox.moip.com.br/v2/',
+    ];
+
     public function __construct($config = null)
     {
         $this->config = $config ?: Config::getInstance();
@@ -69,9 +77,10 @@ abstract class Resource
 
     public function handleClientException(ClientException $e, $data = [])
     {
-        $contents        = json_decode($e->getResponse()->getBody()->getContents());
-        $exception       = new RemoteException($e->getMessage());
-        $exception->data = $data;
+        $contents           = json_decode($e->getResponse()->getBody()->getContents());
+        $exception          = new RemoteException($e->getMessage());
+        $exception->data    = $data;
+        $exception->headers = $e->getRequest()->getHeaders();
 
         $exception->setError(isset($contents->errors) ? $contents->errors[0]->description : '');
 

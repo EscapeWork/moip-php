@@ -2,6 +2,8 @@
 
 namespace EscapeWork\Moip\Data;
 
+use EscapeWork\Moip\Data\TransferInstrumentData;
+
 class TransferData extends Data
 {
 
@@ -12,6 +14,13 @@ class TransferData extends Data
         'amount',
         'transferInstrument',
     ];
+
+    public function setTransferInstrumentAttribute($data)
+    {
+        $this->transferInstrument = new TransferInstrumentData;
+        $this->transferInstrument->fill($data);
+        return $this;
+    }
 
     public function toArray()
     {
