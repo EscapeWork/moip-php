@@ -53,9 +53,11 @@ class FundingInstrumentData extends Data
 
             case self::BOLETO:
                 $data['boleto'] = $this->boleto->toArray();
+                break;
 
             case self::ONLINE_DEBIT:
                 $data['onlineDebit'] = $this->onlineDebit->toArray();
+                break;
         }
 
         return $data;
