@@ -34,7 +34,7 @@ abstract class Resource
      * API endpoints
      */
     protected $endpoint = [
-        'production' => '',
+        'production' => 'https://api.moip.com.br/v2/',
         'sandbox'    => 'https://sandbox.moip.com.br/v2/',
     ];
 
