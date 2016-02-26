@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace EscapeWork\Moip\Resources;
 
@@ -13,7 +13,7 @@ class Subscription extends Resource
      * API endpoints
      */
     protected $endpoint = [
-        'production' => '',
+        'production' => 'https://api.moip.com.br/assinaturas/v1/',
         'sandbox'    => 'https://sandbox.moip.com.br/assinaturas/v1/',
     ];
 
