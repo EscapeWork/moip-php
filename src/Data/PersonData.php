@@ -42,6 +42,16 @@ class PersonData extends Data
         $this->attributes['taxDocument']->number = $cpf;
     }
 
+    public function setCnpjAttribute($cnpj)
+    {
+        if (! isset($this->attributes['taxDocument'])) {
+            $this->attributes['taxDocument'] = new TaxDocumentData;
+        }
+
+        $this->attributes['taxDocument']->type   = 'CNPJ';
+        $this->attributes['taxDocument']->number = $cnpj;
+    }
+
     public function setIdentityDocumentAttribute($data)
     {
         if ($data instanceof IdentityDocumentData) {
