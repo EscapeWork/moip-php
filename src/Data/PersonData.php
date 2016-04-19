@@ -16,6 +16,7 @@ class PersonData extends Data
         'taxDocument',
         'identityDocument',
         'cpf',
+        'cnpj',
         'birthDate',
         'nationality',
         'phone',
