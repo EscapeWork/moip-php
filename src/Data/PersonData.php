@@ -109,12 +109,15 @@ class PersonData extends Data
         $data = [
             'name'        => $this->name,
             'lastName'    => $this->lastName,
-            'birthDate'   => $this->birthDate,
             'nationality' => $this->nationality,
             'taxDocument' => $this->taxDocument->toArray(),
             'phone'       => $this->phone->toArray(),
             'address'     => $this->address->toArray(),
         ];
+
+        if ($this->birthDate) {
+            $data['birthDate'] = $this->birthDate;
+        }
 
         if ($this->identityDocument instanceof IdentityDocumentData) {
             $data['identityDocument'] = $this->identityDocument->toArray();
