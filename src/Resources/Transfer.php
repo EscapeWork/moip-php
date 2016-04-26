@@ -44,6 +44,23 @@ class Transfer extends Resource
         }
     }
 
+    public function get($code)
+    {
+        try {
+            $response = $this->config->client->get('transfers/' . $code, [
+                'debug' => false,
+            ]);
+
+            return json_decode($response->getBody()->getContents());
+        }
+        catch (ClientException $e) {
+            $this->handleClientException($e, ['code' => $code]);
+        }
+        catch (Exception $e) {
+            $this->handleExcpetion($e);
+        }
+    }
+
     public function setData($data)
     {
         $this->transferData = new TransferData();
