@@ -18,6 +18,12 @@ class Transfer extends Resource
     protected $auth = Config::AUTH_OAUTH;
 
     /**
+     * Transfer methods
+     */
+    const MOIP_ACCOUNT = 'MOIP_ACCOUNT';
+    const BANK_ACCOUNT = 'BANK_ACCOUNT';
+
+    /**
      * Models needed
      */
     protected $required = [

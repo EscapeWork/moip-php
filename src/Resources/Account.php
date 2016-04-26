@@ -50,6 +50,23 @@ class Account extends Resource
         }
     }
 
+    public function get($id)
+    {
+        try {
+            $response = $this->config->client->get('accounts/' . $id, [
+                'debug' => false,
+            ]);
+
+            return json_decode($response->getBody()->getContents());
+        }
+        catch (ClientException $e) {
+            $this->handleClientException($e, ['']);
+        }
+        catch (Exception $e) {
+            $this->handleException($e);
+        }
+    }
+
     public function setTransparentAccount($transparentAccount)
     {
         $this->transparentAccount = $transparentAccount;
