@@ -21,7 +21,7 @@ class Balance extends Resource
      */
     protected $required = [];
 
-    public function get($id)
+    public function get()
     {
         try {
             $response = $this->config->client->get('balances', [
