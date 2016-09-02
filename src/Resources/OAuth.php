@@ -25,18 +25,16 @@ class OAuth extends Resource
             'client_id'     => $this->client_id,
             'client_secret' => $this->client_secret,
             'redirect_uri'  => $this->redirect_uri,
-            'code'          => $this->code,
             'grant_type'    => 'authorization_code',
+            'code'          => $this->code,
         ];
-        // dd($data);
+
         try {
             $endpoint = $this->endpoints['connect'][$this->config->getEnvironment()];
             $response = $this->config->client->post($endpoint . 'oauth/token', [
-                'debug' => false,
-                'json'  => $data,
+                'debug'       => true,
+                'form_params' => $data,
             ]);
-
-            dd($response->getBody()->getContents());
 
             return json_decode($response->getBody()->getContents());
         }
