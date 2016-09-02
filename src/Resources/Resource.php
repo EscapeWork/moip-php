@@ -9,7 +9,6 @@ use Exception;
 
 abstract class Resource
 {
-
     /**
      * @var  EscapeWork\Moip\Config
      */
@@ -33,9 +32,16 @@ abstract class Resource
     /**
      * API endpoints
      */
-    protected $endpoint = [
-        'production' => 'https://api.moip.com.br/v2/',
-        'sandbox'    => 'https://sandbox.moip.com.br/v2/',
+    protected $endpoints = [
+        'api' => [
+            'production' => 'https://api.moip.com.br/v2/',
+            'sandbox'    => 'https://sandbox.moip.com.br/v2/',
+        ],
+
+        'connect' => [
+            'production' => 'https://connect.moip.com.br/',
+            'sandbox'    => 'https://connect-sandbox.moip.com.br/',
+        ],
     ];
 
     public function __construct($config = null)
@@ -44,7 +50,7 @@ abstract class Resource
 
         if (! $this->config->configured()) {
             $this->config->configure([
-                'endpoint' => $this->endpoint[$this->config->getEnvironment()],
+                'endpoint' => $this->endpoints['api'][$this->config->getEnvironment()],
                 'auth'     => $this->auth,
             ]);
         }
@@ -68,7 +74,7 @@ abstract class Resource
     {
         $this->config->setAppAccessToken($token);
         $this->config->configure([
-            'endpoint' => $this->endpoint[$this->config->getEnvironment()],
+            'endpoint' => $this->endpoints['api'][$this->config->getEnvironment()],
             'auth'     => $this->auth,
         ]);
 
