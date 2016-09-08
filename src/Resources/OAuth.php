@@ -32,7 +32,7 @@ class OAuth extends Resource
         try {
             $endpoint = $this->endpoints['connect'][$this->config->getEnvironment()];
             $response = $this->config->client->post($endpoint . 'oauth/token', [
-                'debug'       => true,
+                'debug'       => false,
                 'form_params' => $data,
             ]);
 
