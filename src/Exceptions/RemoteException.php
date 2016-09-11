@@ -14,7 +14,7 @@ class RemoteException extends ErrorException
     /**
      * @var string
      */
-    protected $code;
+    protected $errorCode;
 
     /**
      * @var array
@@ -37,14 +37,14 @@ class RemoteException extends ErrorException
         return $this->error;
     }
 
-    public function setCode($code)
+    public function setErrorCode($errorCode)
     {
-        $this->code = $code;
+        $this->errorCode = $errorCode;
         return $this;
     }
 
-    public function getCode()
+    public function getErrorCode()
     {
-        return $this->code;
+        return $this->errorCode;
     }
 }

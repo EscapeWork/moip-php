@@ -88,7 +88,7 @@ abstract class Resource
         $exception->data    = $data;
         $exception->headers = $e->getRequest()->getHeaders();
 
-        $exception->setCode(isset($contents->errors) ? $contents->errors[0]->code : null);
+        $exception->setErrorCode(isset($contents->errors) ? $contents->errors[0]->code : null);
         $exception->setError(isset($contents->errors) ? $contents->errors[0]->description : '');
 
         throw $exception;
