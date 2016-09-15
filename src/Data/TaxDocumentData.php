@@ -4,7 +4,6 @@ namespace EscapeWork\Moip\Data;
 
 class TaxDocumentData extends Data
 {
-
     /**
      * Fillable attributes
      */

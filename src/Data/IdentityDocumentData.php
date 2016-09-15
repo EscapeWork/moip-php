@@ -46,7 +46,7 @@ class IdentityDocumentData extends Data
             'type'      => $this->getType(),
             'number'    => $this->getNumber(),
             'issuer'    => $this->getIssuer(),
-            'issueDate' => $this->issueDate(),
+            'issueDate' => $this->getIssueDate(),
         ];
     }
 }

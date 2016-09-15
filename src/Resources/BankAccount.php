@@ -10,7 +10,6 @@ use GuzzleHttp\Exception\ClientException;
 
 class BankAccount extends Resource
 {
-
     /**
      * Authentication method
      */
