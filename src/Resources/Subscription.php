@@ -12,9 +12,11 @@ class Subscription extends Resource
     /**
      * API endpoints
      */
-    protected $endpoint = [
-        'production' => 'https://api.moip.com.br/assinaturas/v1/',
-        'sandbox'    => 'https://sandbox.moip.com.br/assinaturas/v1/',
+    protected $endpoints = [
+        'api' => [
+            'production' => 'https://api.moip.com.br/assinaturas/v1/',
+            'sandbox'    => 'https://sandbox.moip.com.br/assinaturas/v1/',
+        ],
     ];
 
     /**
