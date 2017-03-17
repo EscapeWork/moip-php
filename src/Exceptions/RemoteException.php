@@ -6,11 +6,15 @@ use ErrorException;
 
 class RemoteException extends ErrorException
 {
-
     /**
      * @var array
      */
     protected $error = [];
+
+    /**
+     * @var string
+     */
+    protected $errorCode;
 
     /**
      * @var array
@@ -31,5 +35,16 @@ class RemoteException extends ErrorException
     public function getError()
     {
         return $this->error;
+    }
+
+    public function setErrorCode($errorCode)
+    {
+        $this->errorCode = $errorCode;
+        return $this;
+    }
+
+    public function getErrorCode()
+    {
+        return $this->errorCode;
     }
 }

@@ -4,7 +4,6 @@ namespace EscapeWork\Moip\Data;
 
 class HolderData extends Data
 {
-
     /**
      * Fillable attributes
      */
@@ -12,6 +11,7 @@ class HolderData extends Data
         'fullname',
         'birthdate',
         'cpf',
+        'cnpj',
         'taxDocument',
         'phone',
     ];
@@ -38,6 +38,16 @@ class HolderData extends Data
         }
 
         $this->attributes['taxDocument']->number = $cpf;
+    }
+
+    public function setCnpjAttribute($cnpj)
+    {
+        if (! isset($this->attributes['taxDocument'])) {
+            $this->attributes['taxDocument'] = new TaxDocumentData;
+        }
+
+        $this->attributes['taxDocument']->type   = 'CNPJ';
+        $this->attributes['taxDocument']->number = $cnpj;
     }
 
     public function setTaxDocumentAttribute($data)

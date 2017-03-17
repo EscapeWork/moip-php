@@ -10,7 +10,6 @@ use Exception;
 
 class Payment extends Resource
 {
-
     /**
      * Models needed
      */
