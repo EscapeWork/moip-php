@@ -31,6 +31,16 @@ class PaymentResponse extends Response
         return $this->getAmount()->total;
     }
 
+    public function getInstallmentCount()
+    {
+        return $this->data->installmentCount;
+    }
+
+    public function getCreditCardLast4()
+    {
+        return $this->data->fundingInstrument->creditCard->last4;
+    }
+
     public function hasCancellationDetails()
     {
         return isset($this->data->cancellationDetails);
@@ -49,6 +59,11 @@ class PaymentResponse extends Response
     public function getCancellationDetailsCancelledBy()
     {
         return $this->data->cancellationDetails->cancelledBy;
+    }
+
+    public function getBoletoLineCode()
+    {
+        return $this->data->fundingInstrument->boleto->lineCode;
     }
 
     public function getBoletoLink()
