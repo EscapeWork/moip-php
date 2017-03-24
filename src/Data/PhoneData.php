@@ -4,7 +4,6 @@ namespace EscapeWork\Moip\Data;
 
 class PhoneData extends Data
 {
-
     /**
      * Fillable attributes
      */

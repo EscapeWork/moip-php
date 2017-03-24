@@ -5,9 +5,9 @@ namespace EscapeWork\Moip\Data;
 class FundingInstrumentData extends Data
 {
 
-    const CREDIT_CARD  = 'CREDIT_CARD';
-    const BOLETO       = 'BOLETO';
-    const ONLINE_DEBIT = 'ONLINE_DEBIT';
+    const CREDIT_CARD       = 'CREDIT_CARD';
+    const BOLETO            = 'BOLETO';
+    const ONLINE_BANK_DEBIT = 'ONLINE_BANK_DEBIT';
 
     /**
      * Fillable attributes
@@ -16,7 +16,7 @@ class FundingInstrumentData extends Data
         'method',
         'creditCard',
         'boleto',
-        'onlineDebit',
+        'onlineBankDebit',
     ];
 
     public function getMethod()
@@ -36,9 +36,9 @@ class FundingInstrumentData extends Data
         $this->boleto->fill($data);
     }
 
-    public function setOnlineDebitAttribute($data)
+    public function setOnlineBankDebitAttribute($data)
     {
-        $this->onlineDebit = new OnlineDebitData();
+        $this->onlineDebit = new OnlineBankDebitData();
         $this->onlineDebit->fill($data);
     }
 
@@ -55,8 +55,8 @@ class FundingInstrumentData extends Data
                 $data['boleto'] = $this->boleto->toArray();
                 break;
 
-            case self::ONLINE_DEBIT:
-                $data['onlineDebit'] = $this->onlineDebit->toArray();
+            case self::ONLINE_BANK_DEBIT:
+                $data['onlineBankDebit'] = $this->onlineBankDebit->toArray();
                 break;
         }
 

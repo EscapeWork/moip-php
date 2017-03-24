@@ -2,9 +2,8 @@
 
 namespace EscapeWork\Moip\Data;
 
-class OnlineDebitData extends Data
+class OnlineBankDebitData extends Data
 {
-
     /**
      * Fillable attributes
      */

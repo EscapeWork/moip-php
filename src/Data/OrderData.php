@@ -4,7 +4,6 @@ namespace EscapeWork\Moip\Data;
 
 class OrderData extends Data
 {
-
     /**
      * Fillable attributes
      */
