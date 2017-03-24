@@ -4,6 +4,7 @@ namespace EscapeWork\Moip\Resources;
 
 use EscapeWork\Moip\Data\FundingInstrumentData;
 use EscapeWork\Moip\Exceptions\RemoteException;
+use EscapeWork\Moip\Responses\PaymentResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Exception;
@@ -31,7 +32,7 @@ class Payment extends Resource
                 'json'  => $data,
             ]);
 
-            return json_decode($response->getBody()->getContents());
+            return new PaymentResponse(json_decode($response->getBody()->getContents()));
         }
         catch (ClientException $e) {
             $this->handleClientException($e, $data);

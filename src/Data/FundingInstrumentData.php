@@ -4,7 +4,6 @@ namespace EscapeWork\Moip\Data;
 
 class FundingInstrumentData extends Data
 {
-
     const CREDIT_CARD       = 'CREDIT_CARD';
     const BOLETO            = 'BOLETO';
     const ONLINE_BANK_DEBIT = 'ONLINE_BANK_DEBIT';
@@ -38,8 +37,8 @@ class FundingInstrumentData extends Data
 
     public function setOnlineBankDebitAttribute($data)
     {
-        $this->onlineDebit = new OnlineBankDebitData();
-        $this->onlineDebit->fill($data);
+        $this->onlineBankDebit = new OnlineBankDebitData();
+        $this->onlineBankDebit->fill($data);
     }
 
     public function toArray()
