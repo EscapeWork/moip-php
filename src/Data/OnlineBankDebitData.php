@@ -5,7 +5,7 @@ namespace EscapeWork\Moip\Data;
 class OnlineBankDebitData extends Data
 {
     const BANK_BB       = '001';
-    const BANK_BRADSCO  = '237';
+    const BANK_BRADESCO = '237';
     const BANK_ITAU     = '341';
     const BANK_BANRISUL = '041';
 

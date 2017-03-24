@@ -77,11 +77,14 @@ class PaymentResponse extends Response
             case OnlineBankDebitData::BANK_BB:
                 return $this->data->_links->payOnlineBankDebitBB->redirectHref;
 
-            // case OnlineBankDebitData::BANK_BRADSCO:
-            //     return $this->data->_links->payOnlineBankDebitBB->redirectHref;
+            case OnlineBankDebitData::BANK_ITAU:
+                return $this->data->_links->payOnlineBankDebitItau->redirectHref;
 
-            default:
-                dd($this->data);
+            case OnlineBankDebitData::BANK_BRADESCO:
+                return $this->data->_links->payOnlineBankDebitBradesco->redirectHref;
+
+            case OnlineBankDebitData::BANK_BANRISUL:
+                return $this->data->_links->payOnlineBankDebitBanrisul->redirectHref;
         }
     }
 }
