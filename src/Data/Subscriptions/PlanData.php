@@ -1,12 +1,11 @@
 <?php
 
-namespace EscapeWork\Moip\Data;
+namespace EscapeWork\Moip\Data\Subscriptions;
 
-use EscapeWork\Moip\Contracts\PlanContract;
+use EscapeWork\Moip\Data\Data;
 
-class Plan extends Data implements PlanContract
+class PlanData extends Data
 {
-
     /**
      * Fillable attributes
      */
