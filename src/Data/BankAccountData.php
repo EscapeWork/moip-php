@@ -29,6 +29,10 @@ class BankAccountData extends Data
     {
         $data = array_except($this->attributes, ['holder']);
 
+        if (! $data['agencyCheckNumber']) {
+            $data['agencyCheckNumber'] = '0';
+        }
+
         if ($this->holder) {
             $data['holder'] = $this->holder->toArray();
         }
