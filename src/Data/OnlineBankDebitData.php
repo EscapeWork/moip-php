@@ -2,8 +2,12 @@
 
 namespace EscapeWork\Moip\Data;
 
-class OnlineDebitData extends Data
+class OnlineBankDebitData extends Data
 {
+    const BANK_BB       = '001';
+    const BANK_BRADESCO = '237';
+    const BANK_ITAU     = '341';
+    const BANK_BANRISUL = '041';
 
     /**
      * Fillable attributes

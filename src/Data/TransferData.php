@@ -6,7 +6,6 @@ use EscapeWork\Moip\Data\TransferInstrumentData;
 
 class TransferData extends Data
 {
-
     /**
      * Fillable attributes
      */

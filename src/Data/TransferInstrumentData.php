@@ -4,7 +4,6 @@ namespace EscapeWork\Moip\Data;
 
 class TransferInstrumentData extends Data
 {
-
     /**
      * Fillable attributes
      */

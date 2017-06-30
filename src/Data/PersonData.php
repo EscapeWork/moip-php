@@ -6,7 +6,6 @@ use EscapeWork\Moip\Data\IdentityDocumentData;
 
 class PersonData extends Data
 {
-
     /**
      * Fillable attributes
      */
