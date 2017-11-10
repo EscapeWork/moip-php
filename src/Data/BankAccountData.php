@@ -29,7 +29,7 @@ class BankAccountData extends Data
     {
         $data = array_except($this->attributes, ['holder']);
 
-        if (! $data['agencyCheckNumber']) {
+        if (! isset($data['agencyCheckNumber']) || ! $data['agencyCheckNumber']) {
             $data['agencyCheckNumber'] = '0';
         }
 
