@@ -50,6 +50,23 @@ class Transfer extends Resource
         }
     }
 
+    public function reverse($code)
+    {
+        try {
+            $response = $this->config->client->post(sprintf('transfers/%s/reverse', $code), [
+                'debug' => false,
+            ]);
+
+            return json_decode($response->getBody()->getContents());
+        }
+        catch (ClientException $e) {
+            $this->handleClientException($e, $data);
+        }
+        catch (Exception $e) {
+            $this->handleExcpetion($e);
+        }
+    }
+
     public function get($code)
     {
         try {
