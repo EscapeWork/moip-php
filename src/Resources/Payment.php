@@ -52,4 +52,9 @@ class Payment extends Resource
         $this->fundingInstrument = new FundingInstrumentData($data);
         return $this;
     }
+
+    public function setCreditCard($data)
+    {
+        $this->fundingInstrument->creditCard = $data;
+    }
 }
