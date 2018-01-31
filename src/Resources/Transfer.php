@@ -11,7 +11,6 @@ use GuzzleHttp\Exception\ClientException;
 
 class Transfer extends Resource
 {
-
     /**
      * Authentication method
      */
@@ -46,7 +45,7 @@ class Transfer extends Resource
             $this->handleClientException($e, $data);
         }
         catch (Exception $e) {
-            $this->handleExcpetion($e);
+            $this->handleException($e);
         }
     }
 
@@ -63,7 +62,7 @@ class Transfer extends Resource
             $this->handleClientException($e, $data);
         }
         catch (Exception $e) {
-            $this->handleExcpetion($e);
+            $this->handleException($e);
         }
     }
 
@@ -80,7 +79,7 @@ class Transfer extends Resource
             $this->handleClientException($e, ['code' => $code]);
         }
         catch (Exception $e) {
-            $this->handleExcpetion($e);
+            $this->handleException($e);
         }
     }
 

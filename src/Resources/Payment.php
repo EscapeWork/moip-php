@@ -38,7 +38,7 @@ class Payment extends Resource
             $this->handleClientException($e, $data);
         }
         catch (Exception $e) {
-            $this->handleExcpetion($e);
+            $this->handleException($e);
         }
     }
 
