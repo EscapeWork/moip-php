@@ -23,6 +23,13 @@ class Transfer extends Resource
     const BANK_ACCOUNT = 'BANK_ACCOUNT';
 
     /**
+     * Transfer status
+     */
+    const STATUS_FAILED = 'FAILED';
+    const STATUS_PENDING = 'PENDING';
+    const STATUS_COMPLETED = 'COMPLETED';
+
+    /**
      * Models needed
      */
     protected $required = [
