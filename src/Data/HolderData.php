@@ -55,6 +55,11 @@ class HolderData extends Data
         $this->taxDocument = new TaxDocumentData($data);
     }
 
+    public function setPhoneAttribute($data)
+    {
+        $this->phone = new PhoneData($data);
+    }
+
     public function setPhoneData($data)
     {
         $this->phone = new PhoneData($data);
