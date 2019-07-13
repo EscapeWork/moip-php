@@ -3,11 +3,6 @@
 use PHPUnit\Framework\TestCase;
 use EscapeWork\Moip\Data\HolderData;
 
-function dd()
-{
-    var_dump(func_get_args()); die;
-}
-
 /**
  * @coversDefaultClass \EscapeWork\Moip\Data\HolderData
  */
