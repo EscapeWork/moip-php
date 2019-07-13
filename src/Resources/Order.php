@@ -76,7 +76,7 @@ class Order extends Resource
 
     public function setReceiver($data = [])
     {
-        $this->receivers[] = new ReceiverData($data);
+        $this->receivers[] = $data instanceof ReceiverData ? $data : new ReceiverData($data);
         return $this;
     }
 
