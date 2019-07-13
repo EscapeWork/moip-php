@@ -57,12 +57,12 @@ class HolderData extends Data
 
     public function setPhoneAttribute($data)
     {
-        $this->phone = new PhoneData($data);
+        $this->setPhoneData($data);
     }
 
     public function setPhoneData($data)
     {
-        $this->phone = new PhoneData($data);
+        $this->attributes['phone'] = new PhoneData($data);
     }
 
     public function toArray()

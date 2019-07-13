@@ -13,9 +13,9 @@ abstract class Data
     /**
      * @var  array
      */
-    protected $fillable = array();
+    protected $fillable = [];
 
-    public function __construct($data = array())
+    public function __construct($data = [])
     {
         $this->fill($data);
     }

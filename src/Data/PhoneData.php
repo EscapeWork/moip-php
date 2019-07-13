@@ -32,8 +32,8 @@ class PhoneData extends Data
     {
         return [
             'countryCode' => $this->getCountryCode(),
-            'areaCode'    => $this->getAreaCode(),
-            'number'      => $this->getNumber(),
+            'areaCode' => $this->getAreaCode(),
+            'number' => $this->getNumber(),
         ];
     }
 }
