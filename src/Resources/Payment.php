@@ -19,12 +19,18 @@ class Payment extends Resource
         'fundingInstrument',
     ];
 
+    /**
+     * @var string
+     */
+    protected $statementDescriptor;
+
     public function execute($order)
     {
-        $data = [
+        $data = array_filter([
             'installmentCount'  => $this->getInstallmentCount(),
+            'statementDescriptor'  => $this->getStatementDescriptor(),
             'fundingInstrument' => $this->fundingInstrument->toArray(),
-        ];
+        ]);
 
         try {
             $response = $this->config->client->post('orders/'.$order->id.'/payments', [
@@ -45,6 +51,17 @@ class Payment extends Resource
     public function getInstallmentCount()
     {
         return $this->installmentCount ?: 1;
+    }
+
+    public function setStatementDescriptor($statementDescriptor)
+    {
+        $this->statementDescriptor = $statementDescriptor;
+        return $this;
+    }
+
+    public function getStatementDescriptor()
+    {
+        return $this->statementDescriptor;
     }
 
     public function setFundingInstrument($data)
