@@ -6,7 +6,6 @@ use GuzzleHttp\Client;
 
 class Config
 {
-
     const AUTH_HTTP  = 'http';
     const AUTH_OAUTH = 'oauth';
 

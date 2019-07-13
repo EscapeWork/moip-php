@@ -6,7 +6,6 @@ use EscapeWork\Moip\Contracts\CustomerContract;
 
 class CustomerData extends Data implements CustomerContract
 {
-
     /**
      * Fillable attributes
      */
